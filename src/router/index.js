@@ -1,5 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Login from '@/views/Login.vue'
+import Registration from '@/views/Registration.vue'
+import Inbox from '@/views/Inbox.vue'
+import Today from '@/views/Today.vue'
+import Profile from '@/views/Profile.vue'
+import Upcoming from '@/views/Upcoming.vue'
+import ProfileRegistration from '@/views/profileRegistration.vue'
+import { Route } from 'react-router-dom'
+import NotificationList from '@/views/NotificationList.vue'
 
 const routes = [
   {
@@ -8,13 +17,46 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path:'/login',
+    name:'login',
+    component:Login
+  },
+  {
+    path:'/registration',
+    name:'registration',
+    component:Registration
+  },
+  {
+    path:'/inbox',
+    name:'inbox',
+    component:Inbox,
+  },
+  {
+    path:'/notifications',
+    name: 'notifications',
+    component: NotificationList
+  },
+  {
+    path:'/today',
+    name:'today',
+    component:Today
+  },
+  {
+    path:'/profile',
+    name:'profile',
+    component:Profile
+  },
+  {
+    path:'/upcoming',
+    name:'upcoming',
+    component:Upcoming
+  },
+  {
+    path:'/user',
+    name:'user',
+    component:ProfileRegistration
   }
+  
 ]
 
 const router = createRouter({
