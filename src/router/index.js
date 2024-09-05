@@ -7,7 +7,6 @@ import Today from '@/views/Today.vue'
 import Profile from '@/views/Profile.vue'
 import Upcoming from '@/views/Upcoming.vue'
 import ProfileRegistration from '@/views/profileRegistration.vue'
-import { Route } from 'react-router-dom'
 import NotificationList from '@/views/NotificationList.vue'
 
 const routes = [
