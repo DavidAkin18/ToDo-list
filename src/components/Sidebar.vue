@@ -54,7 +54,7 @@
             <img v-if="profileImage" :src="profileImage" alt="Profile Image" class="rounded-full w-6 h-6" >
             <img v-else src="../assets/images/profileID.jpeg" alt="profile pic" class="rounded-full w-6 h-6">
             <span v-if="username">{{ username }} <font-awesome-icon :icon="['fas', 'caret-down']" v-if="toggleProfile" /> </span>
-            <span v-else>Username <font-awesome-icon :icon="['fas', 'caret-down']" v-if="toggleProfile" /> </span>
+            <span v-else>+Add Account <font-awesome-icon :icon="['fas', 'caret-down']" v-if="toggleProfile" /> </span>
             <font-awesome-icon :icon="['fas', 'caret-up']" v-if="!toggleProfile" />
           </div>
         </button>

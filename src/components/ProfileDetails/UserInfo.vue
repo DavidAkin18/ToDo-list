@@ -1,7 +1,7 @@
 <template>
-  <div class="inbox min-h-screen flex flex-row" >
+  <div class="inbox min-h-screen flex flex-row"  >
     <Sidebar 
-      class="min-h-screen"
+      class="nav w-[max-300px]"
       :lists="lists" 
       :username="profile.username"  
       :profileImage="profile.imagePreview" 

@@ -7,7 +7,7 @@
         <div class="form-container  w-full mt-8 px-2 md:flex-row-reverse flex flex-col items-end gap-2 justify-between">
             <div class="img-container w-full md:w-1/2 "></div>
             <div class=" w-full form md:w-1/2" >
-                <h1 class="text-blue-600 mb-10 text-lg ">Login</h1>
+                <h1 class="text-blue-600 mb-10 text-lg ">Register</h1>
                 <div>
                     <button  class="border p-4 flex items-center gap-2 w-full ">
                         <img src="../assets/images/googleLogo.png" alt="google-logo"  class="apple-logo w-10"> Continue with Google
@@ -64,18 +64,12 @@ export default {
             this.toggleEye = this.toggleEye === 'password'? 'text' :'password';
         },
         handleSubmit(){
-            // if(this.password.length > 5){
-            //     this.passwordError = ''
-            //     localStorage.clear();
-            //     this.$router.push('/inbox' )
-            // }else{
-            //     this.passwordError='password must be at least 6 chars long'
-            // }
+           
             if (this.password.length > 5) {
                 this.passwordError = '';
-                // Clear local storage for a fresh start
-                localStorage.removeItem('tasks'); // Remove tasks specifically
-                // Navigate to inbox route with query parameter
+                localStorage.removeItem('tasks');
+                localStorage.removeItem('profile');
+                 
                 this.$router.push({ name: 'inbox', query: { from: 'registration' } });
             } else {
                 this.passwordError = 'Password must be at least 6 chars long';

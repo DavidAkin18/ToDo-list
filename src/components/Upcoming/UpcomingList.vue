@@ -38,6 +38,11 @@
             <p class="reminder my-2 md:text-lg md:flex gap-3 items-center" :class="{'text-[#555]': !isDarkMode, 'text-[#e2e8f0]': isDarkMode}" v-if="task.reminder">
               <font-awesome-icon class="text-[#007BFF] md:text-lg" :icon="['fas', 'bell']" /> {{getReminder(task.reminder) }}
             </p>
+            <p class="reminder  my-2 md:text-lg md:flex gap-3 items-center" :class="{'text-[#555]': !isDarkMode, 'text-[#e2e8f0]': isDarkMode}" v-if="task.priority">
+              <font-awesome-icon v-if="task.priority === 'High'" class="text-red-600 md:text-lg" :icon="['fas', 'flag']" /> 
+              <font-awesome-icon v-else-if="task.priority ==='Medium'" class="text-yellow-400 md:text-lg" :icon="['fas', 'flag']" /> 
+              <font-awesome-icon v-else class="text-green-600 md:text-lg" :icon="['fas', 'flag']" /> {{ task.priority }}
+            </p>
             <div v-if="task.subtasks" class="subtasks mt-4">
               <h3 class="text-lg font-bold" :class="{'text-[#333]': !isDarkMode, 'text-[#e2e8f0]': isDarkMode}">Subtasks</h3>
               <div v-for="subtask in task.subtasks" :key="subtask.id" class="subtask-item  flex gap-1.5">

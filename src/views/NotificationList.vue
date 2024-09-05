@@ -17,15 +17,37 @@
     
     <div class="border pt-14 w-full px-2  mx-auto lg:flex flex-col  lg:w-8/12 lg:mr-10 ">
         <h1 class="text-3xl text-[#007BFF] font-bold mb-4">Notifications:</h1>
+        <div  v-if="filteredReminder">
+            <ul>
+                <li v-for="task in filteredReminder" :key="task.id" class="mb-4 p-4 border border-[#007BFF] rounded">
+                    <div class="">
+                      <h3 class="text-xl font-bold text-[#007BFF]"><font-awesome-icon :icon="['fas', 'bell']" /> Do not forget</h3>
+                      <div class="pl-4">
+                        <h2 class="font-bold text-xl">{{ task.text }}</h2>
+                        <p>{{ task.description }}</p>
+                        <p>Don't forget: {{ formatDate(task.reminder) }}</p>
+                      </div>
+                    </div>
+                    
+                </li>
+            </ul>
+        </div>
+        <div v-else>
+            <p>No overdue tasks.</p>
+        </div>
         <div  v-if="filteredOverDue">
             <ul>
                 <li v-for="task in filteredOverDue" :key="task.id" class="mb-4 p-4 border border-red-500 rounded">
-                    <h2 class="font-bold text-xl">{{ task.text }}</h2>
-                    <p>{{ task.description }}</p>
-                    <p class="text-red-600">Overdue since: {{ formatDate(task.reminder) }}</p>
+                    <div>
+                      <h3 class="text-xl font-bold text-[#007BFF]"><font-awesome-icon class="text-[#007BFF] md:text-lg" :icon="['fas', 'calendar-days']" /> Task outdated already</h3>
+                      <div class="pl-4">
+                        <h2 class="font-bold text-xl">{{ task.text }}</h2>
+                        <p>{{ task.description }}</p>
+                        <p class="text-red-600">Overdue since: {{ formatDate(task.dueDate) }}</p>
+                      </div>
+                    </div>
                 </li>
             </ul>
-
         </div>
         <div v-else>
             <p>No overdue tasks.</p>
@@ -87,23 +109,14 @@ export default {
       username: state => state.profile.username,
       profileImage: state => state.profile.imagePreview,
     }),
-      // overdueTasks() {
-      //     const now = new Date();
-      //     const overdue = this.tasks.filter(task => {
-      //     if (!task.reminder) return false;
-      //     const reminderDate = new Date(task.reminder);
-      //     if (isNaN(reminderDate.getTime())) {
-      //         console.error('Invalid date:', task.reminder);
-      //         return false;
-      //     }
-      //     return differenceInDays(now, reminderDate) > 0;
-      //     });
-      //     console.log('Overdue tasks:', overdue);
-      //     return overdue;
-      // },
-      filteredOverDue() {
+      
+      filteredReminder() {
           const dueDate = dayjs().format('YYYY-MM-DDTHH:mm');
           return this.tasks.filter(task => task.reminder < dueDate);
+      },
+      filteredOverDue() {
+          const dueDate = dayjs().format('YYYY-MM-DDTHH:mm');
+          return this.tasks.filter(task => task.dueDate < dueDate);
       },
   },
   methods: {
